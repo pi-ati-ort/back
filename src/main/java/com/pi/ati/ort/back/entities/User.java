@@ -1,6 +1,7 @@
 package com.pi.ati.ort.back.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -10,8 +11,10 @@ public class User {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String username;
 
+    @NotNull
     private String password;
 
     public User() {
