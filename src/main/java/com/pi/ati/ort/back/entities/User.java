@@ -17,13 +17,16 @@ public class User {
     @NotNull
     private String password;
 
+    private String roles;
+
     public User() {
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String password, String roles) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -43,5 +46,12 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Object getRoles() {
+        return roles;
+    }
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

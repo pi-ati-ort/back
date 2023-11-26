@@ -3,6 +3,7 @@ package com.pi.ati.ort.back.controllers;
 import com.pi.ati.ort.back.classes.UserRequest;
 import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
+import com.pi.ati.ort.back.utils.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -19,6 +20,8 @@ import java.util.Optional;
 @RestController
 public class UserController {
     private final UserService userService;
+
+    private JwtTokenUtil jwtTokenUtil;
 
     public UserController(UserService userService) {
         this.userService = userService;
