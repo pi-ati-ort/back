@@ -2,6 +2,7 @@ package com.pi.ati.ort.back.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.bimserver.shared.interfaces.ServiceInterface;
 
 @Entity
 @Table(name = "users")
