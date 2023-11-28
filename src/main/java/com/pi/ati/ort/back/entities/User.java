@@ -2,7 +2,6 @@ package com.pi.ati.ort.back.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.bimserver.shared.interfaces.ServiceInterface;
 
 @Entity
 @Table(name = "users")
@@ -13,6 +12,8 @@ public class User {
     private Long id;
 
     @NotNull
+    private String name;
+    @NotNull
     private String username;
 
     @NotNull
@@ -21,8 +22,9 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String name, String username, String password) {
         this.id = id;
+        this.name = name;
         this.username = username;
         this.password = password;
     }
@@ -33,6 +35,8 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+    public void setName(String name){this.name = name;}
+    public String getName(){return name;}
     public String getUsername() {
         return username;
     }
