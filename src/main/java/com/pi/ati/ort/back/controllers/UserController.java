@@ -24,7 +24,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    //Dos GET ALL USERS
+    //Docs GET ALL USERS
     @Operation(summary = "Get all the users")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
@@ -58,23 +58,6 @@ public class UserController {
     @GetMapping("/users/{username}")
     public User getUserByUsername(@Parameter (description="The User's username") @PathVariable String username) {
         return userService.findByUsername(username);
-    }
-
-    // Docs CREATE USER
-    @Operation(summary = "Create a new user")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Created Ok",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserRequest.class))}),
-    })
-    @PostMapping("/users")
-    public ResponseEntity<User> createNewUser(@RequestBody UserRequest userRequest) {
-        User user = new User();
-        user.setUsername(userRequest.getUsername());
-        user.setPassword(userRequest.getPassword());
-
-        User createdUser = userService.createUser(user);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     // Docs UPDATE USER BY ID
