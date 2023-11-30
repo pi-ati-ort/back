@@ -12,6 +12,9 @@ public class User {
     private Long id;
 
     @NotNull
+    private String name;
+
+    @NotNull
     private String username;
 
     @NotNull
@@ -32,6 +35,8 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     public String getUsername() {
         return username;
     }
