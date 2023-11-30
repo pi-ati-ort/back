@@ -24,7 +24,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    //Dos GET ALL USERS
+    //Docs GET ALL USERS
     @Operation(summary = "Get all the users")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
