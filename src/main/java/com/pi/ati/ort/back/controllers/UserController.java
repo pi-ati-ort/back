@@ -1,6 +1,6 @@
 package com.pi.ati.ort.back.controllers;
 
-import com.pi.ati.ort.back.classes.UserRequest;
+import com.pi.ati.ort.back.classes.LoginRequest;
 import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,15 +65,15 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Updated Ok",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserRequest.class))}),
+                            schema = @Schema(implementation = LoginRequest.class))}),
     })
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUserById(@PathVariable Long id, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<User> updateUserById(@PathVariable Long id, @RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            user.setUsername(userRequest.getUsername());
-            user.setPassword(userRequest.getPassword());
+            user.setUsername(loginRequest.getUsername());
+            user.setPassword(loginRequest.getPassword());
 
             User updatedUser = userService.createUser(user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -87,7 +87,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Deleted Ok",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = UserRequest.class))}),
+                            schema = @Schema(implementation = LoginRequest.class))}),
     })
     @DeleteMapping("/users/{id}")
     public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
