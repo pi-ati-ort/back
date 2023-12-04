@@ -2,6 +2,7 @@ package com.pi.ati.ort.back.classes;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -50,13 +51,22 @@ public class BimClient {
 
     //AUTH INTERFACE METHODS
     //login
-    public void login(String username, String password) throws ServiceException {
-        authInterface.login(username, password);
+    public LoginResponse login(String username, String password) throws ServiceException {
+        String user = authInterface.login(username, password);
+        if (user != null) {
+            return new LoginResponse(user);
+        }
+        return null;
     }
 
     //logout
     public void logout() throws ServiceException {
         authInterface.logout();
+    }
+
+    //logged user
+    public SUser getLoggedUser() throws ServiceException {
+        return authInterface.getLoggedInUser();
     }
 
     //SERVICE INTERFACE METHODS

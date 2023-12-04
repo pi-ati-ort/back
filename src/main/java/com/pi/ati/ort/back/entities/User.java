@@ -1,7 +1,9 @@
 package com.pi.ati.ort.back.entities;
 
+import com.pi.ati.ort.back.classes.LoginResponse;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.bimserver.interfaces.objects.SUser;
 
 @Entity
 @Table(name = "users")
