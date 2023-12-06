@@ -4,7 +4,7 @@ import org.bimserver.interfaces.objects.SUser;
 
 public class ServerUser {
 
-    SUser user;
+    private SUser user;
 
     public ServerUser() {
     }

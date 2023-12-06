@@ -95,9 +95,8 @@ public class AuthController {
                             schema = @Schema(implementation = ServerUser.class))}),
     })
     @GetMapping("/logged")
-    public ServerUser getLoggedUser() throws ServiceException {
+    public ResponseEntity<SUser> getLoggedUser() throws ServiceException {
         SUser user = bimClient.getLoggedUser();
-        ServerUser serverUser = new ServerUser(user);
-        return serverUser;
+        return new ResponseEntity<> (user, HttpStatus.OK);
     }
 }
