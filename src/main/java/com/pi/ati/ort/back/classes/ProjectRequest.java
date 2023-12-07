@@ -13,7 +13,6 @@ public class ProjectRequest {
         this.schema = schema;
     }
 
-
     public String getName() {
         return name;
     }
@@ -22,7 +21,6 @@ public class ProjectRequest {
         return schema;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -30,6 +28,4 @@ public class ProjectRequest {
     public void setSchema(String schema) {
         this.schema = schema;
     }
-
-
 }
