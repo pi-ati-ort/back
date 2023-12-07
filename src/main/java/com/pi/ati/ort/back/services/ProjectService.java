@@ -16,22 +16,21 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public Project findByName(String name) {
+    public Project findProjectByName(String name) {
         return projectRepository.findByName(name);
     }
 
-    public Optional<Project> findById(Long id) {
+    public Optional<Project> findProjectById(Long id) {
         return projectRepository.findById(id);
     }
 
-    public List<Project> findAll() {
+    public List<Project> findAllProjects() {
         return projectRepository.findAll();
     }
 
-    public Project createUser(Project project) {
+    public Project createProject(Project project) {
         return projectRepository.save(project);
     }
-
 
     public void deleteProjectById(Long id) {
         projectRepository.deleteById(id);
