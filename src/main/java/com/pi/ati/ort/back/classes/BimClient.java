@@ -1,4 +1,6 @@
 package com.pi.ati.ort.back.classes;
+import com.pi.ati.ort.back.entities.User;
+import com.pi.ati.ort.back.services.UserService;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
@@ -52,9 +54,9 @@ public class BimClient {
     //AUTH INTERFACE METHODS
     //login
     public LoginResponse login(String username, String password) throws ServiceException {
-        String user = authInterface.login(username, password);
-        if (user != null) {
-            return new LoginResponse(user);
+        String token = authInterface.login(username, password);
+        if (token != null) {
+            return new LoginResponse(token);
         }
         return null;
     }
@@ -91,8 +93,8 @@ public class BimClient {
     }
 
     //get a project by id
-    public SProject getProject(long poid) throws ServiceException {
-        return serviceInterface.getProjectByPoid(poid);
+    public void getProject(long poid) throws ServiceException {
+        serviceInterface.getProjectByPoid(poid);
     }
 
     //get a project by name

@@ -18,9 +18,8 @@ public class BackApplication {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000").allowedMethods("*");
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000", "https://pi-ati-ort-front.vercel.app").allowedMethods("*");
             }
         };
     }
-
 }

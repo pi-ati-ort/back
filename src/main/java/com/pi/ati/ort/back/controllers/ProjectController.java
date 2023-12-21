@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +67,9 @@ public class ProjectController {
                     schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects/{name}")
-    public Project getProjectByName(@Parameter(description="The Project's name") @PathVariable String name) {
+    public Project getProjectByName(@Parameter(description="The Project's name") @PathVariable String name) throws ServiceException {
+        SProject project = bimClient.getProjectByName(name);
+        System.out.println(project.getDescription());
         return projectService.findProjectByName(name);
     }
 
@@ -80,17 +83,13 @@ public class ProjectController {
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@Valid @RequestBody ProjectRequest projectRequest) throws ServiceException {
         Project project = new Project();
-        String name = projectRequest.getName();
-        System.out.println(name); // POR QUE SALE NULL??
-        project.setName(name);
-        String schema = projectRequest.getSchema();
-        System.out.println(schema); // POR QUE SALE NULL??
-        project.setSchema(schema);
-        //project.setName("TestProject");
-        //project.setPoid(726496904729L);
-        //project.setSchema("ifc4");
+        project.setName(projectRequest.getName());
+        project.setSchema(projectRequest.getSchema());
+        project.setName("TestProject3");
+        project.setSchema("ifc4");
 
-        //bimClient.createProject(project.getName(), project.getSchema());
+//        SProject ServerProject = bimClient.createProject(project.getName(), project.getSchema());
+//        System.out.println(ServerProject.getName());
         Project createdProject = projectService.createProject(project);
 
         return new ResponseEntity<>(createdProject, HttpStatus.CREATED);

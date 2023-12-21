@@ -20,14 +20,17 @@ public class Project {
     @NotNull
     private String schema;
 
+    @NotNull String username;
+
     public Project() {
     }
 
-    public Project(Long id, Long poid, String name, String schema) {
+    public Project(Long id, Long poid, String name, String schema, String username) {
         this.id = id;
         this.poid = poid;
         this.name = name;
         this.schema = schema;
+        this.username = username;
     }
 
     public Long getId() {
@@ -37,24 +40,25 @@ public class Project {
     public Long getPoid() {
         return poid;
     }
-
     public String getName() {
         return name;
     }
-
     public String getSchema() {
         return schema;
     }
-
     public void setPoid(Long poid) {
         this.poid = poid;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setSchema(String schema) {
         this.schema = schema;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
