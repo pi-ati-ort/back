@@ -2,25 +2,24 @@ package com.pi.ati.ort.back.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "projects")
 public class Project {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotNull
     private Long poid;
-
     @NotNull
     private String name;
-
     @NotNull
     private String schema;
-
-    @NotNull String username;
+    @NotNull
+    private String username;
+    @NotNull
+    private Date created_at = new Date();
 
     public Project() {
     }
@@ -60,5 +59,11 @@ public class Project {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+    public Date getCreated_at() {
+        return created_at;
+    }
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

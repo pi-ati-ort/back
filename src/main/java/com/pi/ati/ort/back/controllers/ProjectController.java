@@ -48,14 +48,14 @@ public class ProjectController {
     }
 
     //Docs GET PROJECT BY ID
-    @Operation(summary = "Get the project by poid")
+    @Operation(summary = "Get the project by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
                     content = { @Content(mediaType = "application/json",
                     schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects/id/{id}")
-    public Optional<Project> getProjectById(@Parameter(description="The Project's poid") @PathVariable long id) {
+    public Optional<Project> getProjectById(@Parameter(description="The Project's id") @PathVariable long id) {
         return projectService.findProjectById(id);
     }
 
@@ -85,13 +85,11 @@ public class ProjectController {
         Project project = new Project();
         project.setName(projectRequest.getName());
         project.setSchema(projectRequest.getSchema());
-        project.setName("TestProject3");
-        project.setSchema("ifc4");
+        project.setUsername(projectRequest.getUsername());
+        project.setPoid(12697836261L);
 
-//        SProject ServerProject = bimClient.createProject(project.getName(), project.getSchema());
-//        System.out.println(ServerProject.getName());
         Project createdProject = projectService.createProject(project);
 
-        return new ResponseEntity<>(createdProject, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
     }
 }

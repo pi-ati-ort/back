@@ -6,9 +6,6 @@ public class ProjectRequest {
     private String schema;
     private String username;
 
-    public ProjectRequest() {
-    }
-
     public ProjectRequest(String name, String schema, String username) {
         this.name = name;
         this.schema = schema;
@@ -18,11 +15,11 @@ public class ProjectRequest {
     public String getName() {
         return name;
     }
-    public String getSchema() {
-        return schema;
-    }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getSchema() {
+        return schema;
     }
     public void setSchema(String schema) {
         this.schema = schema;
