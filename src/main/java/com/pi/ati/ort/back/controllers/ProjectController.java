@@ -16,10 +16,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -91,5 +88,18 @@ public class ProjectController {
         Project createdProject = projectService.createProject(project);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
+    }
+
+    //Docs DELETE PROJECT
+    @Operation(summary = "Delete a project by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Project deleted Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseEntity.class))}),
+    })
+    @DeleteMapping("/projects/{id}")
+    public ResponseEntity<HttpStatus> deleteProject(@Parameter(description="The Project's id") @PathVariable long id) throws ServiceException {
+        projectService.deleteProjectById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
