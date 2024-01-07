@@ -39,7 +39,7 @@ public class ProjectController {
                             schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects")
-    public List<Project> getAllUsers() throws ServiceException {
+    public List<Project> getAllProjects() throws ServiceException {
         //List<SProject> projects = bimClient.getAllProjectsByUser(true, true);
         return projectService.findAllProjects();
     }
