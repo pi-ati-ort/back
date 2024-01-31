@@ -28,7 +28,6 @@ public class ModelController {
         this.bimClient = bimClient;
     }
 
-
     // UPLOAD MODEL -----------------------------------------------------
     // En proceso!
     @Operation(summary = "Upload a model to a project")

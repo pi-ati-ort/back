@@ -1,10 +1,10 @@
 package com.pi.ati.ort.back.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "models")
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,22 +14,26 @@ public class Model {
     @NotNull
     private String username;
     @NotNull
-    private Byte[] file;
+    private Byte file;
+    @NotNull
+    private String path;
 
     public Model() {
     }
 
-    public Model(Long id, String name, String username, Byte[] file) {
+    public Model(Long id, String name, String username, Byte file, String path) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.file = file;
+        this.path = path;
     }
 
-    public Model(String name, String username, Byte[] file) {
+    public Model(String name, String username, Byte file, String path) {
         this.name = name;
         this.username = username;
         this.file = file;
+        this.path = path;
     }
 
     public Long getId() {
@@ -50,11 +54,16 @@ public class Model {
     public void setUsername(String username) {
         this.username = username;
     }
-    public Byte[] getFile() {
+    public Byte getFile() {
         return file;
     }
-    public void setFile(Byte[] file) {
+    public void setFile(Byte file) {
         this.file = file;
     }
-
+    public String getPath() {
+        return path;
+    }
+    public void setPath(String path) {
+        this.path = path;
+    }
 }
