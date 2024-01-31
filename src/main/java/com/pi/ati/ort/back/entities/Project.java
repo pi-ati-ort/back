@@ -1,5 +1,6 @@
 package com.pi.ati.ort.back.entities;
 
+import com.pi.ati.ort.back.classes.ProjectRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.util.Date;
@@ -7,30 +8,40 @@ import java.util.Date;
 @Entity
 @Table(name = "projects")
 public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
-    private Long poid;
     @NotNull
     private String name;
     @NotNull
     private String schema;
     @NotNull
     private String username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    private Long poid;
     @NotNull
     private Date created_at = new Date();
 
     public Project() {
     }
 
-    public Project(Long id, Long poid, String name, String schema, String username) {
-        this.id = id;
-        this.poid = poid;
+    public Project(String name, String schema, String username, Long poid) {
         this.name = name;
         this.schema = schema;
         this.username = username;
+        this.poid = poid;
+
     }
+
+//    public static Project fromRequest(ProjectRequest request) {
+//        Project project = new Project();
+//        System.out.println("ProjectRequest: " + request.toString());
+//        project.setName(request.getName());
+//        project.setSchema(request.getSchema());
+//        project.setUsername(request.getUsername());
+//        project.setPoid(121L);
+//        return project;
+//    }
 
     public Long getId() {
         return id;
@@ -65,5 +76,17 @@ public class Project {
     }
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "name='" + name + '\'' +
+                ", schema='" + schema + '\'' +
+                ", username='" + username + '\'' +
+                ", id=" + id +
+                ", poid=" + poid +
+                ", created_at=" + created_at +
+                '}';
     }
 }

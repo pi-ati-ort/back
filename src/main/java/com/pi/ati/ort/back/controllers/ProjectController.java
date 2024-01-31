@@ -14,9 +14,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,15 +80,12 @@ public class ProjectController {
                             schema = @Schema(implementation = ProjectRequest.class))}),
     })
     @PostMapping("/projects")
-    public ResponseEntity<Project> createProject(@Valid @RequestBody ProjectRequest projectRequest) throws ServiceException {
-        Project project = new Project();
-        project.setName(projectRequest.getName());
-        project.setSchema(projectRequest.getSchema());
-        project.setUsername(projectRequest.getUsername());
-        project.setPoid(12697836261L);
-
-        Project createdProject = projectService.createProject(project);
-
+    public ResponseEntity<Project> createProject(@RequestBody ProjectRequest projectRequest) throws ServiceException {
+        System.out.println("ProjectRequest: " + projectRequest.getName());
+        Project newProject = new Project(projectRequest.getName(), projectRequest.getSchema(), projectRequest.getUsername(), 121L);
+        System.out.println("Project: " + newProject.toString());
+        //Project project = Project.fromRequest(projectRequest);
+        Project createdProject = projectService.createProject(newProject);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
     }
 
@@ -97,9 +96,22 @@ public class ProjectController {
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ResponseEntity.class))}),
     })
-    @DeleteMapping("/projects/{id}")
+    @DeleteMapping("/projects/id/{id}")
     public ResponseEntity<HttpStatus> deleteProject(@Parameter(description="The Project's id") @PathVariable long id) throws ServiceException {
         projectService.deleteProjectById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Docs UPLOAD MODEL
+    @Operation(summary = "Upload a model to a project")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Model uploaded Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseEntity.class))}),
+    })
+    @PostMapping("/projects/id/{id}/model")
+    public ResponseEntity<HttpStatus> uploadModel(@Parameter(description="The Project's id") @PathVariable long id,  @RequestParam("file") MultipartFile multipartFile) throws ServiceException {
+        //modelService.uploadModel(id, multipartFile);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
