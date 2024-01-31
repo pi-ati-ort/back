@@ -83,8 +83,8 @@ public class BimClient {
     }
 
     //create a project
-    public void createProject(String projectName, String schema) throws ServiceException {
-        serviceInterface.addProject(projectName, schema);
+    public SProject createProject(String projectName, String schema) throws ServiceException {
+        return serviceInterface.addProject(projectName, schema);
     }
 
     //delete a project by id

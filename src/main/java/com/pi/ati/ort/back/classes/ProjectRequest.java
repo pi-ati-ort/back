@@ -16,18 +16,18 @@ public class ProjectRequest {
         this.username = username;
     }
 
-    public String getName() {return this.name;}
+    public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
     }
     public String getSchema() {
-        return this.schema;
+        return schema;
     }
     public void setSchema(String schema) {
         this.schema = schema;
     }
     public String getUsername() {
-        return this.username;
+        return username;
     }
     public void setUsername(String username) {
         this.username = username;

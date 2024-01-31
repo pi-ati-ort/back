@@ -18,14 +18,14 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long poid;
+    private int poid;
     @NotNull
     private Date created_at = new Date();
 
     public Project() {
     }
 
-    public Project(String name, String schema, String username, Long poid) {
+    public Project(String name, String schema, String username, int poid) {
         this.name = name;
         this.schema = schema;
         this.username = username;
@@ -33,21 +33,19 @@ public class Project {
 
     }
 
-//    public static Project fromRequest(ProjectRequest request) {
-//        Project project = new Project();
-//        System.out.println("ProjectRequest: " + request.toString());
-//        project.setName(request.getName());
-//        project.setSchema(request.getSchema());
-//        project.setUsername(request.getUsername());
-//        project.setPoid(121L);
-//        return project;
-//    }
+    public static Project fromRequest(ProjectRequest request) {
+        Project project = new Project();
+        project.setName(request.getName());
+        project.setSchema(request.getSchema());
+        project.setUsername(request.getUsername());
+        return project;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Long getPoid() {
+    public int getPoid() {
         return poid;
     }
     public String getName() {
@@ -56,7 +54,7 @@ public class Project {
     public String getSchema() {
         return schema;
     }
-    public void setPoid(Long poid) {
+    public void setPoid(int poid) {
         this.poid = poid;
     }
     public void setName(String name) {

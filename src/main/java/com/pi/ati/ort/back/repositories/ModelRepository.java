@@ -1,4 +1,17 @@
 package com.pi.ati.ort.back.repositories;
 
-public class ModelRepository {
+import com.pi.ati.ort.back.entities.Model;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ModelRepository extends JpaRepository<Model, Long> {
+    public List<Model> findAll();
+
+    public Optional<Model> findById(Long id);
+
+    public Model save(Model model);
+
+    public void deleteById(Long id);
 }
