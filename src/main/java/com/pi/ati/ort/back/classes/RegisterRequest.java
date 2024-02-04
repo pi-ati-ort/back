@@ -1,7 +1,6 @@
 package com.pi.ati.ort.back.classes;
 
 public class RegisterRequest {
-
     private  String name;
     private String username;
     private String password;

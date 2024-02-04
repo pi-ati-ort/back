@@ -1,4 +1,7 @@
 package com.pi.ati.ort.back.classes;
+import com.pi.ati.ort.back.entities.Model;
+import com.pi.ati.ort.back.entities.User;
+import com.pi.ati.ort.back.services.UserService;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
@@ -13,6 +16,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.springframework.stereotype.Service;
 
+import javax.activation.DataHandler;
 import java.util.List;
 
 @Service
@@ -49,12 +53,14 @@ public class BimClient {
         return lowLevelInterface;
     }
 
+
+    // --------------------------------------------------------------------------------------------
     //AUTH INTERFACE METHODS
     //login
     public LoginResponse login(String username, String password) throws ServiceException {
-        String user = authInterface.login(username, password);
-        if (user != null) {
-            return new LoginResponse(user);
+        String token = authInterface.login(username, password);
+        if (token != null) {
+            return new LoginResponse(token);
         }
         return null;
     }
@@ -69,6 +75,7 @@ public class BimClient {
         return authInterface.getLoggedInUser();
     }
 
+    // --------------------------------------------------------------------------------------------
     //SERVICE INTERFACE METHODS
     //register an admin
     public void registerAdmin(String username, String password, String name) throws ServiceException {
@@ -91,8 +98,8 @@ public class BimClient {
     }
 
     //get a project by id
-    public SProject getProject(long poid) throws ServiceException {
-        return serviceInterface.getProjectByPoid(poid);
+    public void getProject(long poid) throws ServiceException {
+        serviceInterface.getProjectByPoid(poid);
     }
 
     //get a project by name
@@ -105,6 +112,13 @@ public class BimClient {
         return serviceInterface.getAllProjects(onlyTopLevel, onlyActive);
     }
 
+    //upload a model to a project
+    public void uploadModelToProject(Long poid, String comment, Long deserializer, Model file) throws ServiceException {
+        DataHandler dataHandler = new DataHandler(file.getFile(), "application/octet-stream");
+        serviceInterface.checkinSync(poid, comment, deserializer, (Long)file.getSize(), file.getFilename(), dataHandler, false);
+    }
+
+    // --------------------------------------------------------------------------------------------
     //LOW LEVEL INTERFACE METHODS
     // to be done
 }

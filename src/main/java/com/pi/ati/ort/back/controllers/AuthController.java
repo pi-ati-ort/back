@@ -29,7 +29,7 @@ public class AuthController {
         this.bimClient = bimClient;
     }
 
-    //Dos REGISTER A NEW USER
+    // REGISTER A NEW USER -----------------------------------------------------
     @Operation(summary = "Register a new user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User created Ok",
@@ -49,7 +49,7 @@ public class AuthController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    //Dos LOGIN
+    // LOGIN -----------------------------------------------------
     @Operation(summary = "Login a user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User logged in Ok",
@@ -74,7 +74,7 @@ public class AuthController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    //Dos LOGOUT
+    // LOGOUT -----------------------------------------------------
     @Operation(summary = "Logout a user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User logged out Ok",
@@ -87,7 +87,7 @@ public class AuthController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    //Docs GET LOGGED USER
+    // GET LOGGED USER -----------------------------------------------------
     @Operation(summary = "Get logged user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Get logged user",
