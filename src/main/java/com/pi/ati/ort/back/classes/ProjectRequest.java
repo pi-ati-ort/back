@@ -1,17 +1,17 @@
 package com.pi.ati.ort.back.classes;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class ProjectRequest {
     private String name;
+    private String description;
     private String schema;
     private String username;
 
     public ProjectRequest() {
     }
 
-    public ProjectRequest(String name, String schema, String username) {
+    public ProjectRequest(String name, String description, String schema, String username) {
         this.name = name;
+        this.description = description;
         this.schema = schema;
         this.username = username;
     }
@@ -19,6 +19,12 @@ public class ProjectRequest {
     public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public String getSchema() {
         return schema;
@@ -37,6 +43,7 @@ public class ProjectRequest {
     public String toString() {
         return "ProjectRequest{" +
                 "name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", schema='" + schema + '\'' +
                 ", username='" + username + '\'' +
                 '}';

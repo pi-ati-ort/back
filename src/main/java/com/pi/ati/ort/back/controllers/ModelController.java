@@ -1,6 +1,8 @@
 package com.pi.ati.ort.back.controllers;
 
 import com.pi.ati.ort.back.classes.BimClient;
+import com.pi.ati.ort.back.classes.ModelRequest;
+import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.services.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -34,11 +36,15 @@ public class ModelController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Model uploaded Ok",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ResponseEntity.class))}),
+                            schema = @Schema(implementation = Model.class))}),
     })
     @PostMapping("/projects/id/{id}/model")
-    public ResponseEntity<HttpStatus> uploadModel(@Parameter(description="The Project's id") @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) throws ServiceException {
-        //modelService.uploadModel(id, multipartFile);
+    public ResponseEntity<Model> uploadModel(@RequestBody ModelRequest modelRequest) throws ServiceException {
+        Model model = new Model();
+        model.setProjectId(modelRequest.getModelId());
+        model.setName(modelRequest.getName());
+        modelService.createModel(model);
+        //bimClient.uploadModel(modelRequest.getFile(), modelRequest.getPath());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

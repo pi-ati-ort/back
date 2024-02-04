@@ -1,4 +1,5 @@
 package com.pi.ati.ort.back.classes;
+import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
 import org.bimserver.client.BimServerClient;
@@ -15,6 +16,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.springframework.stereotype.Service;
 
+import javax.activation.DataHandler;
 import java.util.List;
 
 @Service
@@ -51,6 +53,8 @@ public class BimClient {
         return lowLevelInterface;
     }
 
+
+    // --------------------------------------------------------------------------------------------
     //AUTH INTERFACE METHODS
     //login
     public LoginResponse login(String username, String password) throws ServiceException {
@@ -71,6 +75,7 @@ public class BimClient {
         return authInterface.getLoggedInUser();
     }
 
+    // --------------------------------------------------------------------------------------------
     //SERVICE INTERFACE METHODS
     //register an admin
     public void registerAdmin(String username, String password, String name) throws ServiceException {
@@ -107,6 +112,13 @@ public class BimClient {
         return serviceInterface.getAllProjects(onlyTopLevel, onlyActive);
     }
 
+    //upload a model to a project
+    public void uploadModelToProject(Long poid, String comment, Long deserializer, Model file) throws ServiceException {
+        DataHandler dataHandler = new DataHandler(file.getFile(), "application/octet-stream");
+        serviceInterface.checkinSync(poid, comment, deserializer, file.getSize(), file.getName(), dataHandler, false);
+    }
+
+    // --------------------------------------------------------------------------------------------
     //LOW LEVEL INTERFACE METHODS
     // to be done
 }

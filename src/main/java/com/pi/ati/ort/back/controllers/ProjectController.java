@@ -63,6 +63,7 @@ public class ProjectController {
         Project newProject = Project.fromRequest(projectRequest);
         SProject bimProject = bimClient.createProject(newProject.getName(), newProject.getSchema());
         newProject.setPoid((int) bimProject.getOid());
+        newProject.setUuid(bimProject.getUuid());
         Project createdProject = projectService.createProject(newProject);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);

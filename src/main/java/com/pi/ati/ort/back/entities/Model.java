@@ -10,30 +10,30 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String name;
+    private Long projectId;
     @NotNull
-    private String username;
+    private String name;
     @NotNull
     private Byte file;
     @NotNull
-    private String path;
+    private Long size;
 
     public Model() {
     }
 
-    public Model(Long id, String name, String username, Byte file, String path) {
+    public Model(Long id, String name, Long projectId, Byte file, Long size) {
         this.id = id;
+        this.projectId = projectId;
         this.name = name;
-        this.username = username;
         this.file = file;
-        this.path = path;
+        this.size = size;
     }
 
-    public Model(String name, String username, Byte file, String path) {
+    public Model(String name, Long projectId, Byte file, Long size) {
         this.name = name;
-        this.username = username;
+        this.projectId = projectId;
         this.file = file;
-        this.path = path;
+        this.size = size;
     }
 
     public Long getId() {
@@ -48,11 +48,11 @@ public class Model {
     public void setName(String name) {
         this.name = name;
     }
-    public String getUsername() {
-        return username;
+    public Long getProjectId() {
+        return projectId;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
     public Byte getFile() {
         return file;
@@ -60,10 +60,10 @@ public class Model {
     public void setFile(Byte file) {
         this.file = file;
     }
-    public String getPath() {
-        return path;
+    public Long getSize() {
+        return size;
     }
-    public void setPath(String path) {
-        this.path = path;
+    public void setSize(String path) {
+        this.size = size;
     }
 }
