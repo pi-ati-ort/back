@@ -41,10 +41,23 @@ public class ModelController {
     @PostMapping("/projects/id/{id}/model")
     public ResponseEntity<Model> uploadModel(@RequestBody ModelRequest modelRequest) throws ServiceException {
         Model model = new Model();
-        model.setProjectId(modelRequest.getModelId());
-        model.setName(modelRequest.getName());
+        model.setProjectId(modelRequest.getProjectId());
+        model.setFilename(modelRequest.getFilename());
+        model.setSize(modelRequest.getSize());
         modelService.createModel(model);
         //bimClient.uploadModel(modelRequest.getFile(), modelRequest.getPath());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // GET ALL MODELS -----------------------------------------------------
+    @Operation(summary = "Get all the models")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Model.class))}),
+    })
+    @GetMapping("/models")
+    public ResponseEntity<Iterable<Model>> getAllModels() {
+        return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
     }
 }

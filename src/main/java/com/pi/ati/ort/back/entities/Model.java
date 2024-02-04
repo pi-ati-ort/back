@@ -11,9 +11,9 @@ public class Model {
     private Long id;
     @NotNull
     private Long projectId;
+    private Long bimId;
     @NotNull
-    private String name;
-    @NotNull
+    private String filename;
     private Byte file;
     @NotNull
     private Long size;
@@ -21,17 +21,19 @@ public class Model {
     public Model() {
     }
 
-    public Model(Long id, String name, Long projectId, Byte file, Long size) {
+    public Model(Long id, String filename, Long projectId, Long bimId, Byte file, Long size) {
         this.id = id;
         this.projectId = projectId;
-        this.name = name;
+        this.bimId = bimId;
+        this.filename = filename;
         this.file = file;
         this.size = size;
     }
 
-    public Model(String name, Long projectId, Byte file, Long size) {
-        this.name = name;
+    public Model(String filename, Long projectId, Long bimId, Byte file, Long size) {
+        this.filename = filename;
         this.projectId = projectId;
+        this.bimId = bimId;
         this.file = file;
         this.size = size;
     }
@@ -42,11 +44,11 @@ public class Model {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getName() {
-        return name;
+    public String getFilename() {
+        return filename;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
     public Long getProjectId() {
         return projectId;
@@ -63,7 +65,13 @@ public class Model {
     public Long getSize() {
         return size;
     }
-    public void setSize(String path) {
+    public void setSize(Long size) {
         this.size = size;
+    }
+    public Long getBimId() {
+        return bimId;
+    }
+    public void setBimId(Long bimId) {
+        this.bimId = bimId;
     }
 }

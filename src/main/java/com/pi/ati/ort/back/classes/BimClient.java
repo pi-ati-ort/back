@@ -115,7 +115,7 @@ public class BimClient {
     //upload a model to a project
     public void uploadModelToProject(Long poid, String comment, Long deserializer, Model file) throws ServiceException {
         DataHandler dataHandler = new DataHandler(file.getFile(), "application/octet-stream");
-        serviceInterface.checkinSync(poid, comment, deserializer, file.getSize(), file.getName(), dataHandler, false);
+        serviceInterface.checkinSync(poid, comment, deserializer, (Long)file.getSize(), file.getFilename(), dataHandler, false);
     }
 
     // --------------------------------------------------------------------------------------------

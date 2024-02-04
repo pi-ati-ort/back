@@ -2,37 +2,29 @@ package com.pi.ati.ort.back.classes;
 
 public class ModelRequest {
 
-    private String name;
-    private Long modelId;
-    private int projectId;
+    private String filename;
+    private Long projectId;
     private Byte[] file;
-    private String path;
+    private Long size;
 
     public ModelRequest() {
     }
 
-    public ModelRequest(String name, int projectId,Long modelId, Byte[] file, String path) {
-        this.name = name;
-        this.modelId = modelId;
+    public ModelRequest(String filename, Long projectId, Byte[] file, Long size) {
+        this.filename = filename;
         this.projectId = projectId;
         this.file = file;
-        this.path = path;
+        this.size = size;
     }
 
-    public String getName() {return name;}
-    public void setName(String name) {
-        this.name = name;
+    public String getFilename() {return filename;}
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
-    public Long getModelId() {
-        return modelId;
-    }
-    public void setModelId(Long modelId) {
-        this.modelId = modelId;
-    }
-    public int getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
-    public void setProjectId(int projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
     public Byte[] getFile() {
@@ -41,21 +33,20 @@ public class ModelRequest {
     public void setFile(Byte[] file) {
         this.file = file;
     }
-    public String getPath() {
-        return path;
+    public Long getSize() {
+        return size;
     }
-    public void setPath(String path) {
-        this.path = path;
+    public void setSize(Long size) {
+        this.size = size;
     }
 
     @Override
     public String toString() {
         return "ModelRequest{" +
-                "name='" + name + '\'' +
-                ", modelId='" + modelId + '\'' +
+                "filename='" + filename + '\'' +
                 ", projectId='" + projectId + '\'' +
                 ", file='" + file + '\'' +
-                ", path='" + path + '\'' +
+                ", size='" + size + '\'' +
                 '}';
     }
 }
