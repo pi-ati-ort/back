@@ -61,8 +61,8 @@ public class ModelController {
         return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
     }
 
-    // DELETE MODEL BY ID -----------------------------------------------------
-    @Operation(summary = "Delete the model by id")
+    // DELETE MODEL BY PROJECT ID -----------------------------------------------------
+    @Operation(summary = "Delete the model by model id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
                     content = { @Content(mediaType = "application/json",
@@ -74,8 +74,8 @@ public class ModelController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // UPDATE MODEL BY ID -----------------------------------------------------
-    @Operation(summary = "Update the model by id")
+    // UPDATE MODEL BY PROJECT ID -----------------------------------------------------
+    @Operation(summary = "Update the model by model id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
                     content = { @Content(mediaType = "application/json",
