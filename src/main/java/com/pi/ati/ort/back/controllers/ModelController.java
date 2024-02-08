@@ -60,4 +60,30 @@ public class ModelController {
     public ResponseEntity<Iterable<Model>> getAllModels() {
         return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
     }
+
+    // DELETE MODEL BY ID -----------------------------------------------------
+    @Operation(summary = "Delete the model by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Model.class))}),
+    })
+    @DeleteMapping("/projects/id/{id}/model")
+    public ResponseEntity<Model> deleteModelById(@Parameter(description="The Model's id") @PathVariable Long id) {
+        modelService.deleteModelById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // UPDATE MODEL BY ID -----------------------------------------------------
+    @Operation(summary = "Update the model by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Model.class))}),
+    })
+    @PutMapping("/projects/id/{id}/model")
+    public ResponseEntity<Model> updateModelById(@Parameter(description="The Model's id") @PathVariable Long id, @RequestBody Model model) {
+        modelService.createModel(model);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -107,4 +107,17 @@ public class ProjectController {
         projectService.deleteProjectById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    // UPDATE PROJECT -----------------------------------------------------
+    @Operation(summary = "Update a project by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Project updated Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Project.class))}),
+    })
+    @PutMapping("/projects/id/{id}")
+    public ResponseEntity<Project> updateProject(@Parameter(description="The Project's id") @PathVariable long id, @RequestBody Project project) {
+        projectService.createProject(project);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
