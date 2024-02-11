@@ -1,6 +1,6 @@
 package com.pi.ati.ort.back.controllers;
 
-import com.pi.ati.ort.back.classes.BimClient;
+import com.pi.ati.ort.back.utils.BimClient;
 import com.pi.ati.ort.back.classes.ModelRequest;
 import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.services.ModelService;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin
@@ -31,7 +30,6 @@ public class ModelController {
     }
 
     // UPLOAD MODEL -----------------------------------------------------
-    // En proceso!
     @Operation(summary = "Upload a model to a project")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Model uploaded Ok",
@@ -44,6 +42,7 @@ public class ModelController {
         model.setProjectId(modelRequest.getProjectId());
         model.setFilename(modelRequest.getFilename());
         model.setSize(modelRequest.getSize());
+        model.setBimId(modelRequest.getBimId());
         modelService.createModel(model);
         //bimClient.uploadModel(modelRequest.getFile(), modelRequest.getPath());
         return new ResponseEntity<>(HttpStatus.OK);

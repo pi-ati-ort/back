@@ -1,4 +1,5 @@
-package com.pi.ati.ort.back.classes;
+package com.pi.ati.ort.back.utils;
+import com.pi.ati.ort.back.classes.LoginResponse;
 import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
@@ -22,6 +23,8 @@ import java.util.List;
 @Service
 public class BimClient {
 
+    // Direccion Elastic IP de AWS: "http://34.233.151.86:8082"
+    // Direccion Local: "http://localhost:8082"
     BimServerClient client = new JsonBimServerClientFactory("http://localhost:8082").create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "1234"));
     AuthInterface authInterface = client.getAuthInterface();
     ServiceInterface serviceInterface = client.getServiceInterface();

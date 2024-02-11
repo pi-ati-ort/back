@@ -1,6 +1,6 @@
 package com.pi.ati.ort.back.controllers;
 
-import com.pi.ati.ort.back.classes.BimClient;
+import com.pi.ati.ort.back.utils.BimClient;
 import com.pi.ati.ort.back.classes.ProjectRequest;
 import com.pi.ati.ort.back.entities.Project;
 import com.pi.ati.ort.back.services.ProjectService;
@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
