@@ -35,4 +35,4 @@ jobs:
           service-name: pi-ati-back
           app-name: backend
           use-staging-deployment: false
-          package: target/back-0.0.1-SNAPSHOT.jar
+          package: ${{ env.ASC_PACKAGE_PATH }}/target/back-0.0.1-SNAPSHOT.jar
