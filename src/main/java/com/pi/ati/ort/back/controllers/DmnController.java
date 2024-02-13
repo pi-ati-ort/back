@@ -70,7 +70,5 @@ public class DmnController {
                 .defaultIfEmpty(new ResponseEntity<String>(HttpStatus.NOT_FOUND))
                 .onErrorReturn(new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-
-
 }
 
