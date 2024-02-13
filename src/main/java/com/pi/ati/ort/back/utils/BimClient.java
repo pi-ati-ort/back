@@ -22,22 +22,22 @@ import java.util.List;
 
 @Service
 public class BimClient {
+    BimServerClient client;
+    AuthInterface authInterface;
+    ServiceInterface serviceInterface;
+    LowLevelInterface lowLevelInterface;
 
-    // Direccion Elastic IP de AWS: "http://34.233.151.86:8082"
-    // Direccion Local: "http://localhost:8082"
-    BimServerClient client = new JsonBimServerClientFactory("http://localhost:8082").create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "1234"));
-    AuthInterface authInterface = client.getAuthInterface();
-    ServiceInterface serviceInterface = client.getServiceInterface();
-    LowLevelInterface lowLevelInterface = client.getLowLevelInterface();
-
-    public BimClient() throws ServiceException, ChannelConnectionException, BimServerClientException {
-    }
-
-    public BimClient(BimServerClient client, AuthInterface authInterface, ServiceInterface serviceInterface, LowLevelInterface lowLevelInterface) throws ServiceException, ChannelConnectionException, BimServerClientException {
-        this.client = client;
-        this.authInterface = authInterface;
-        this.serviceInterface = serviceInterface;
-        this.lowLevelInterface = lowLevelInterface;
+    public BimClient() {
+        try {
+            // Direccion Elastic IP de AWS: "http://18.215.219.56:8082"
+            // Direccion Local: "http://localhost:8082"
+            client = new JsonBimServerClientFactory("http://18.215.219.56:8082").create(new UsernamePasswordAuthenticationInfo("admin@admin.com", "1234"));
+            authInterface = client.getAuthInterface();
+            serviceInterface = client.getServiceInterface();
+            lowLevelInterface = client.getLowLevelInterface();
+        } catch (ServiceException | ChannelConnectionException | BimServerClientException e) {
+            System.err.println("Error while creating BimServerClient: " + e.getMessage());
+        }
     }
 
     public BimServerClient getClient() {

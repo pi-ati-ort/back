@@ -4,6 +4,7 @@ import com.pi.ati.ort.back.classes.*;
 import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
 import com.pi.ati.ort.back.utils.BimClient;
+import com.pi.ati.ort.back.utils.ServerUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
