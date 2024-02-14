@@ -1,4 +1,4 @@
-package com.pi.ati.ort.back.classes;
+package com.pi.ati.ort.back.utils;
 
 import org.bimserver.interfaces.objects.SUser;
 

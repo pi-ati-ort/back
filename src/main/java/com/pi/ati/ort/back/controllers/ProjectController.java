@@ -1,6 +1,6 @@
 package com.pi.ati.ort.back.controllers;
 
-import com.pi.ati.ort.back.classes.BimClient;
+import com.pi.ati.ort.back.utils.BimClient;
 import com.pi.ati.ort.back.classes.ProjectRequest;
 import com.pi.ati.ort.back.entities.Project;
 import com.pi.ati.ort.back.services.ProjectService;
@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -105,6 +104,19 @@ public class ProjectController {
     @DeleteMapping("/projects/id/{id}")
     public ResponseEntity<HttpStatus> deleteProject(@Parameter(description="The Project's id") @PathVariable long id) throws ServiceException {
         projectService.deleteProjectById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // UPDATE PROJECT -----------------------------------------------------
+    @Operation(summary = "Update a project by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Project updated Ok",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Project.class))}),
+    })
+    @PutMapping("/projects/id/{id}")
+    public ResponseEntity<Project> updateProject(@Parameter(description="The Project's id") @PathVariable long id, @RequestBody Project project) {
+        projectService.createProject(project);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
