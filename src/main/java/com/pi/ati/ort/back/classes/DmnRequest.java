@@ -84,4 +84,12 @@ public class DmnRequest {
             return alturaMaxima;
         }
     }
+
+    public String toString() {
+        return "DmnRequest{" +
+                "modelNamespace='" + modelNamespace + '\'' +
+                ", modelName='" + modelName + '\'' +
+                ", dmnContext=" + dmnContext +
+                '}';
+    }
 }

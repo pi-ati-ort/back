@@ -31,7 +31,7 @@ public class DmnController {
         this.webClientBuilder = webClientBuilder;
     }
 
-    @Operation(summary = "Retrieves DMN model for given container")
+    @Operation(summary = "Retrieves all the DMN model norms for given container")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
                     content = { @Content(mediaType = "application/json")})
@@ -59,6 +59,7 @@ public class DmnController {
     @PostMapping("/container/{name}/evaluate")
     public Mono<ResponseEntity<String>> evaluateDmnContainer(@Parameter(description="The container´s name") @PathVariable String name, @RequestBody DmnRequest dmnRequest) throws ServiceException {
         String url ="http://localhost:8080/kie-server/services/rest/server/containers/" + name + "/dmn";
+        System.out.println(dmnRequest.toString());
         return webClientBuilder.build()
                 .post()
                 .uri(url)
