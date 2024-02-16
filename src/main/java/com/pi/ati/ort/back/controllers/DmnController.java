@@ -1,8 +1,6 @@
 package com.pi.ati.ort.back.controllers;
 
 import com.pi.ati.ort.back.classes.DmnRequest;
-import com.pi.ati.ort.back.classes.ModelRequest;
-import com.pi.ati.ort.back.entities.Model;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import javax.json.Json;
 
 @RestController
 @CrossOrigin
