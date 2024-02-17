@@ -21,23 +21,27 @@ public class Project {
     private Long id;
     @NotNull
     private int poid;
-
     @NotNull
     private UUID uuid;
     @NotNull
     private Date created_at = new Date();
+    @NotNull
+    private String address;
+    @NotNull
+    private String padron;
 
     public Project() {
     }
 
-    public Project(String name, String description, String schema, String username, int poid, UUID uuid) {
+    public Project(String name, String description, String schema, String username, int poid, UUID uuid, String address, String padron) {
         this.name = name;
         this.description = description;
         this.schema = schema;
         this.username = username;
         this.poid = poid;
         this.uuid = uuid;
-
+        this.address = address;
+        this.padron = padron;
     }
 
     public static Project fromRequest(ProjectRequest request) {
@@ -46,6 +50,8 @@ public class Project {
         project.setDescription(request.getDescription());
         project.setSchema(request.getSchema());
         project.setUsername(request.getUsername());
+        project.setAddress(request.getAddress());
+        project.setPadron(request.getPadron());
         return project;
     }
 
@@ -95,6 +101,18 @@ public class Project {
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPadron() {
+        return padron;
+    }
+    public void setPadron(String padron) {
+        this.padron = padron;
+    }
 
     @Override
     public String toString() {
@@ -107,6 +125,8 @@ public class Project {
                 ", poid=" + poid +
                 ", uuid=" + uuid +
                 ", created_at=" + created_at +
+                ", address='" + address + '\'' +
+                ", padron='" + padron + '\'' +
                 '}';
     }
 }

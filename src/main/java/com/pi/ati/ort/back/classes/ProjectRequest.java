@@ -5,15 +5,20 @@ public class ProjectRequest {
     private String description;
     private String schema;
     private String username;
+    private String address;
+    private String padron;
+
 
     public ProjectRequest() {
     }
 
-    public ProjectRequest(String name, String description, String schema, String username) {
+    public ProjectRequest(String name, String description, String schema, String username, String address, String padron) {
         this.name = name;
         this.description = description;
         this.schema = schema;
         this.username = username;
+        this.address = address;
+        this.padron = padron;
     }
 
     public String getName() {return name;}
@@ -38,6 +43,18 @@ public class ProjectRequest {
     public void setUsername(String username) {
         this.username = username;
     }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPadron() {
+        return padron;
+    }
+    public void setPadron(String padron) {
+        this.padron = padron;
+    }
 
     @Override
     public String toString() {
@@ -46,6 +63,8 @@ public class ProjectRequest {
                 ", description='" + description + '\'' +
                 ", schema='" + schema + '\'' +
                 ", username='" + username + '\'' +
+                ", adress='" + address + '\'' +
+                ", padron='" + padron + '\'' +
                 '}';
     }
 }

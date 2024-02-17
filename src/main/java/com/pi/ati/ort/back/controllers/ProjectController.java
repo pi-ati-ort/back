@@ -56,7 +56,7 @@ public class ProjectController {
     })
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@Valid @RequestBody ProjectRequest projectRequest) throws ServiceException {
-        if (projectRequest.getUsername() == null || projectRequest.getSchema() == null || projectRequest.getName() == null) {
+        if (projectRequest.getUsername() == null || projectRequest.getSchema() == null || projectRequest.getName() == null || projectRequest.getAddress() == null || projectRequest.getPadron() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Project newProject = Project.fromRequest(projectRequest);
