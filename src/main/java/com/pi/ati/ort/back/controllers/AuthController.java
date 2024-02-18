@@ -6,6 +6,8 @@ import com.pi.ati.ort.back.services.UserService;
 import com.pi.ati.ort.back.utils.BimClient;
 import com.pi.ati.ort.back.utils.ServerUser;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -84,7 +86,8 @@ public class AuthController {
                             schema = @Schema(implementation = ResponseEntity.class))}),
     })
     @PostMapping("/logout")
-    public ResponseEntity<HttpStatus> logout() throws ServiceException {
+    public ResponseEntity<HttpStatus> logout(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                  @RequestHeader(value = "token") String token) throws ServiceException {
         bimClient.logout();
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -97,7 +100,8 @@ public class AuthController {
                             schema = @Schema(implementation = ServerUser.class))}),
     })
     @GetMapping("/logged")
-    public ResponseEntity<SUser> getLoggedUser() throws ServiceException {
+    public ResponseEntity<SUser> getLoggedUser( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                    @RequestHeader(value = "token") String token) throws ServiceException {
         SUser user = bimClient.getLoggedUser();
         return new ResponseEntity<> (user, HttpStatus.OK);
     }

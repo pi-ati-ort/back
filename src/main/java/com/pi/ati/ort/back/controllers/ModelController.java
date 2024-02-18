@@ -6,6 +6,7 @@ import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.services.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -37,7 +38,8 @@ public class ModelController {
                             schema = @Schema(implementation = Model.class))}),
     })
     @PostMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> uploadModel(@RequestBody ModelRequest modelRequest) throws ServiceException {
+    public ResponseEntity<Model> uploadModel( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                  @RequestHeader(value = "token") String token, @RequestBody ModelRequest modelRequest) throws ServiceException {
         Model model = new Model();
         model.setProjectId(modelRequest.getProjectId());
         model.setFilename(modelRequest.getFilename());
@@ -56,7 +58,8 @@ public class ModelController {
                             schema = @Schema(implementation = Model.class))}),
     })
     @GetMapping("/models")
-    public ResponseEntity<Iterable<Model>> getAllModels() {
+    public ResponseEntity<Iterable<Model>> getAllModels( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                             @RequestHeader(value = "token") String token) {
         return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
     }
 
@@ -68,7 +71,8 @@ public class ModelController {
                             schema = @Schema(implementation = Model.class))}),
     })
     @DeleteMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> deleteModelById(@Parameter(description="The Model's id") @PathVariable Long id) {
+    public ResponseEntity<Model> deleteModelById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                      @RequestHeader(value = "token") String token, @Parameter(description="The Model's id") @PathVariable Long id) {
         modelService.deleteModelById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -81,7 +85,8 @@ public class ModelController {
                             schema = @Schema(implementation = Model.class))}),
     })
     @PutMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> updateModelById(@Parameter(description="The Model's id") @PathVariable Long id, @RequestBody Model model) {
+    public ResponseEntity<Model> updateModelById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                      @RequestHeader(value = "token") String token, @Parameter(description="The Model's id") @PathVariable Long id, @RequestBody Model model) {
         modelService.createModel(model);
         return new ResponseEntity<>(HttpStatus.OK);
     }

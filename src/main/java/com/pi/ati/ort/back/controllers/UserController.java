@@ -5,6 +5,7 @@ import com.pi.ati.ort.back.entities.User;
 import com.pi.ati.ort.back.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -32,7 +33,8 @@ public class UserController {
                             schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users")
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                       @RequestHeader(value = "token") String token) {
         return userService.findAll();
     }
 
@@ -44,7 +46,9 @@ public class UserController {
                     schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users/id/{id}")
-    public Optional<User> getUserbyId(@Parameter (description="The User's id") @PathVariable long id) {
+    public Optional<User> getUserbyId(@Parameter (description="The User's id") @PathVariable long id,
+                                      @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                      @RequestHeader(value = "token") String token) {
         return userService.findById(id);
     }
 
@@ -56,7 +60,8 @@ public class UserController {
                     schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users/{username}")
-    public User getUserByUsername(@Parameter (description="The User's username") @PathVariable String username) {
+    public User getUserByUsername( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                       @RequestHeader(value = "token") String token, @Parameter (description="The User's username") @PathVariable String username) {
         return userService.findByUsername(username);
     }
 
@@ -68,7 +73,8 @@ public class UserController {
                             schema = @Schema(implementation = LoginRequest.class))}),
     })
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUserById(@PathVariable Long id, @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<User> updateUserById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                    @RequestHeader(value = "token") String token, @PathVariable Long id, @RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -90,7 +96,8 @@ public class UserController {
                             schema = @Schema(implementation = LoginRequest.class))}),
     })
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
+    public ResponseEntity<User> deleteUserById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                    @RequestHeader(value = "token") String token, @PathVariable Long id) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isPresent()) {
             userService.deleteUserById(id);

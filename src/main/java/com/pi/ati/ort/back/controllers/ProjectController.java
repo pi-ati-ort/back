@@ -6,6 +6,7 @@ import com.pi.ati.ort.back.entities.Project;
 import com.pi.ati.ort.back.services.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +43,8 @@ public class ProjectController {
                             schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects")
-    public List<Project> getAllProjects() throws ServiceException {
+    public List<Project> getAllProjects( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                             @RequestHeader(value = "token") String token) throws ServiceException {
         //List<SProject> projects = bimClient.getAllProjectsByUser(true, true);
         return projectService.findAllProjects();
     }
@@ -55,7 +57,8 @@ public class ProjectController {
                             schema = @Schema(implementation = ProjectRequest.class))}),
     })
     @PostMapping("/projects")
-    public ResponseEntity<Project> createProject(@Valid @RequestBody ProjectRequest projectRequest) throws ServiceException {
+    public ResponseEntity<Project> createProject( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                      @RequestHeader(value = "token") String token, @Valid @RequestBody ProjectRequest projectRequest) throws ServiceException {
         if (projectRequest.getUsername() == null || projectRequest.getSchema() == null || projectRequest.getName() == null || projectRequest.getAddress() == null || projectRequest.getPadron() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -76,7 +79,8 @@ public class ProjectController {
                     schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects/id/{id}")
-    public Optional<Project> getProjectById(@Parameter(description="The Project's id") @PathVariable long id) {
+    public Optional<Project> getProjectById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                 @RequestHeader(value = "token") String token, @Parameter(description="The Project's id") @PathVariable long id) {
         return projectService.findProjectById(id);
     }
 
@@ -88,7 +92,8 @@ public class ProjectController {
                     schema = @Schema(implementation = Project.class))}),
     })
     @GetMapping("/projects/{name}")
-    public Project getProjectByName(@Parameter(description="The Project's name") @PathVariable String name) throws ServiceException {
+    public Project getProjectByName( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                         @RequestHeader(value = "token") String token, @Parameter(description="The Project's name") @PathVariable String name) throws ServiceException {
         SProject project = bimClient.getProjectByName(name);
         System.out.println(project.getDescription());
         return projectService.findProjectByName(name);
@@ -102,7 +107,8 @@ public class ProjectController {
                             schema = @Schema(implementation = ResponseEntity.class))}),
     })
     @DeleteMapping("/projects/id/{id}")
-    public ResponseEntity<HttpStatus> deleteProject(@Parameter(description="The Project's id") @PathVariable long id) throws ServiceException {
+    public ResponseEntity<HttpStatus> deleteProject( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                         @RequestHeader(value = "token") String token, @Parameter(description="The Project's id") @PathVariable long id) throws ServiceException {
         projectService.deleteProjectById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -115,7 +121,8 @@ public class ProjectController {
                             schema = @Schema(implementation = Project.class))}),
     })
     @PutMapping("/projects/id/{id}")
-    public ResponseEntity<Project> updateProject(@Parameter(description="The Project's id") @PathVariable long id, @RequestBody Project project) {
+    public ResponseEntity<Project> updateProject( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                      @RequestHeader(value = "token") String token, @Parameter(description="The Project's id") @PathVariable long id, @RequestBody Project project) {
         projectService.createProject(project);
         return new ResponseEntity<>(HttpStatus.OK);
     }
