@@ -49,6 +49,19 @@ public class ProjectController {
         return projectService.findAllProjects();
     }
 
+    // GET ALL PROJECTS BY USERNAME -----------------------------------------------------
+    @Operation(summary = "Get all the projects by username")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Project.class))}),
+    })
+    @GetMapping("/projects/user/{username}")
+    public List<Project> getAllProjectsByUsername(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                  @RequestHeader(value = "token") String token, @Parameter(description = "The User's username") @PathVariable String username) {
+        return projectService.findAllProjectsByUsername(username);
+    }
+
     // CREATE PROJECT -----------------------------------------------------
     @Operation(summary = "Create a new project")
     @ApiResponses(value = {

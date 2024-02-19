@@ -29,7 +29,7 @@ public class ProjectService {
     }
 
     public List<Project> findAllProjectsByUser(String username) {
-        return projectRepository.findAllByUser(username);
+        return projectRepository.findAllByUsername(username);
     }
 
     public Project createProject(Project project) {
@@ -42,6 +42,6 @@ public class ProjectService {
 
 
     public List<Project> findAllProjectsByUsername(String username) {
-        return projectRepository.findAllByUser(username);
+        return projectRepository.findAllByUsername(username);
     }
 }
