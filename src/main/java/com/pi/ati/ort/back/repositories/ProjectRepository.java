@@ -18,4 +18,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     public Project save(Project project);
 
     public void deleteById(Long id);
+
+    public List<Project> findAllByUser(String username);
 }

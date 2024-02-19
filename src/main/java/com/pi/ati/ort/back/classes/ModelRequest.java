@@ -11,7 +11,7 @@ public class ModelRequest {
     public ModelRequest() {
     }
 
-    public ModelRequest(String filename, Long projectId, Byte[] file, Long bimId,Long size) {
+    public ModelRequest(String filename, Long projectId, Byte[] file, Long bimId, Long size) {
         this.filename = filename;
         this.projectId = projectId;
         this.file = file;
@@ -19,31 +19,42 @@ public class ModelRequest {
         this.size = size;
     }
 
-    public String getFilename() {return filename;}
+    public String getFilename() {
+        return filename;
+    }
+
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
     public Long getProjectId() {
         return projectId;
     }
+
     public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
+
     public Byte[] getFile() {
         return file;
     }
+
     public void setFile(Byte[] file) {
         this.file = file;
     }
+
     public Long getBimId() {
         return bimId;
     }
+
     public void setBimId(Long bimId) {
         this.bimId = bimId;
     }
+
     public Long getSize() {
         return size;
     }
+
     public void setSize(Long size) {
         this.size = size;
     }

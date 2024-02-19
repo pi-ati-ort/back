@@ -34,12 +34,12 @@ public class ModelController {
     @Operation(summary = "Upload a model to a project")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Model uploaded Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Model.class))}),
     })
     @PostMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> uploadModel( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                  @RequestHeader(value = "token") String token, @RequestBody ModelRequest modelRequest) throws ServiceException {
+    public ResponseEntity<Model> uploadModel(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                             @RequestHeader(value = "token") String token, @RequestBody ModelRequest modelRequest) throws ServiceException {
         Model model = new Model();
         model.setProjectId(modelRequest.getProjectId());
         model.setFilename(modelRequest.getFilename());
@@ -54,12 +54,12 @@ public class ModelController {
     @Operation(summary = "Get all the models")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Model.class))}),
     })
     @GetMapping("/models")
-    public ResponseEntity<Iterable<Model>> getAllModels( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                             @RequestHeader(value = "token") String token) {
+    public ResponseEntity<Iterable<Model>> getAllModels(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                        @RequestHeader(value = "token") String token) {
         return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
     }
 
@@ -67,12 +67,12 @@ public class ModelController {
     @Operation(summary = "Delete the model by model id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Model.class))}),
     })
     @DeleteMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> deleteModelById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                      @RequestHeader(value = "token") String token, @Parameter(description="The Model's id") @PathVariable Long id) {
+    public ResponseEntity<Model> deleteModelById(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                 @RequestHeader(value = "token") String token, @Parameter(description = "The Model's id") @PathVariable Long id) {
         modelService.deleteModelById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -81,12 +81,12 @@ public class ModelController {
     @Operation(summary = "Update the model by model id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Model.class))}),
     })
     @PutMapping("/projects/id/{id}/model")
-    public ResponseEntity<Model> updateModelById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                      @RequestHeader(value = "token") String token, @Parameter(description="The Model's id") @PathVariable Long id, @RequestBody Model model) {
+    public ResponseEntity<Model> updateModelById(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                 @RequestHeader(value = "token") String token, @Parameter(description = "The Model's id") @PathVariable Long id, @RequestBody Model model) {
         modelService.createModel(model);
         return new ResponseEntity<>(HttpStatus.OK);
     }

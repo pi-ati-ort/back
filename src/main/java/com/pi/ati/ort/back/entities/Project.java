@@ -3,6 +3,7 @@ package com.pi.ati.ort.back.entities;
 import com.pi.ati.ort.back.classes.ProjectRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -62,54 +63,71 @@ public class Project {
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public String getSchema() {
         return schema;
     }
+
     public int getPoid() {
         return poid;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setSchema(String schema) {
         this.schema = schema;
     }
+
     public void setPoid(int poid) {
         this.poid = poid;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public Date getCreated_at() {
         return created_at;
     }
+
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
+
     public UUID getUuid() {
         return uuid;
     }
+
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
+
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
+
     public String getPadron() {
         return padron;
     }
+
     public void setPadron(String padron) {
         this.padron = padron;
     }

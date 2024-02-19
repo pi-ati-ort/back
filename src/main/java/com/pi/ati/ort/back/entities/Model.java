@@ -41,36 +41,47 @@ public class Model {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getFilename() {
         return filename;
     }
+
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
     public Long getProjectId() {
         return projectId;
     }
+
     public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
+
     public Byte getFile() {
         return file;
     }
+
     public void setFile(Byte file) {
         this.file = file;
     }
+
     public Long getSize() {
         return size;
     }
+
     public void setSize(Long size) {
         this.size = size;
     }
+
     public Long getBimId() {
         return bimId;
     }
+
     public void setBimId(Long bimId) {
         this.bimId = bimId;
     }

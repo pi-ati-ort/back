@@ -1,4 +1,5 @@
 package com.pi.ati.ort.back.utils;
+
 import com.pi.ati.ort.back.classes.LoginResponse;
 import com.pi.ati.ort.back.entities.Model;
 import com.pi.ati.ort.back.entities.User;
@@ -111,14 +112,14 @@ public class BimClient {
     }
 
     //get all projects by user
-    public List<SProject> getAllProjectsByUser(boolean onlyTopLevel, boolean onlyActive ) throws ServiceException {
+    public List<SProject> getAllProjectsByUser(boolean onlyTopLevel, boolean onlyActive) throws ServiceException {
         return serviceInterface.getAllProjects(onlyTopLevel, onlyActive);
     }
 
     //upload a model to a project
     public void uploadModelToProject(Long poid, String comment, Long deserializer, Model file) throws ServiceException {
         DataHandler dataHandler = new DataHandler(file.getFile(), "application/octet-stream");
-        serviceInterface.checkinSync(poid, comment, deserializer, (Long)file.getSize(), file.getFilename(), dataHandler, false);
+        serviceInterface.checkinSync(poid, comment, deserializer, (Long) file.getSize(), file.getFilename(), dataHandler, false);
     }
 
     // --------------------------------------------------------------------------------------------

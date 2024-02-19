@@ -29,12 +29,12 @@ public class UserController {
     @Operation(summary = "Get all the users")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users")
-    public List<User> getAllUsers( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                       @RequestHeader(value = "token") String token) {
+    public List<User> getAllUsers(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                  @RequestHeader(value = "token") String token) {
         return userService.findAll();
     }
 
@@ -42,11 +42,11 @@ public class UserController {
     @Operation(summary = "Get the user by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = User.class))}),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users/id/{id}")
-    public Optional<User> getUserbyId(@Parameter (description="The User's id") @PathVariable long id,
+    public Optional<User> getUserbyId(@Parameter(description = "The User's id") @PathVariable long id,
                                       @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
                                       @RequestHeader(value = "token") String token) {
         return userService.findById(id);
@@ -56,12 +56,12 @@ public class UserController {
     @Operation(summary = "Get the user by username")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = User.class))}),
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = User.class))}),
     })
     @GetMapping("/users/{username}")
-    public User getUserByUsername( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                       @RequestHeader(value = "token") String token, @Parameter (description="The User's username") @PathVariable String username) {
+    public User getUserByUsername(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                  @RequestHeader(value = "token") String token, @Parameter(description = "The User's username") @PathVariable String username) {
         return userService.findByUsername(username);
     }
 
@@ -69,12 +69,12 @@ public class UserController {
     @Operation(summary = "Update a user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Updated Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = LoginRequest.class))}),
     })
     @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUserById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                    @RequestHeader(value = "token") String token, @PathVariable Long id, @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<User> updateUserById(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                               @RequestHeader(value = "token") String token, @PathVariable Long id, @RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -92,12 +92,12 @@ public class UserController {
     @Operation(summary = "Delete a user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Deleted Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = LoginRequest.class))}),
     })
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<User> deleteUserById( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                    @RequestHeader(value = "token") String token, @PathVariable Long id) {
+    public ResponseEntity<User> deleteUserById(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                               @RequestHeader(value = "token") String token, @PathVariable Long id) {
         Optional<User> userOptional = userService.findById(id);
         if (userOptional.isPresent()) {
             userService.deleteUserById(id);

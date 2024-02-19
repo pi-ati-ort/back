@@ -198,7 +198,7 @@ public class DmnRequest {
     }
 
     // Vivienda  --------------------------------------------------------------------------------------------
-public static class Vivienda {
+    public static class Vivienda {
         public int cantBano;
         public int cantCocina;
         public int cantEstar;

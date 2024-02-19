@@ -30,11 +30,11 @@ public class DmnController {
     @Operation(summary = "Retrieves all the DMN model norms for given container")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/json")})
+                    content = {@Content(mediaType = "application/json")})
     })
     @GetMapping("/container/{name}")
-    public Mono<ResponseEntity<String>> retrieveDmnContainer(@Parameter(description="The container´s name") @PathVariable String name) throws ServiceException {
-        String url ="http://localhost:8080/kie-server/services/rest/server/containers/" + name + "/dmn";
+    public Mono<ResponseEntity<String>> retrieveDmnContainer(@Parameter(description = "The container´s name") @PathVariable String name) throws ServiceException {
+        String url = "http://localhost:8080/kie-server/services/rest/server/containers/" + name + "/dmn";
         return webClientBuilder.build()
                 .get()
                 .uri(url)
@@ -49,12 +49,12 @@ public class DmnController {
     @Operation(summary = "Evaluate DMN norm for given container")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok",
-                    content = { @Content(mediaType = "application/xml",
-            schema = @Schema(implementation = DmnRequest.class))})
-        })
+                    content = {@Content(mediaType = "application/xml",
+                            schema = @Schema(implementation = DmnRequest.class))})
+    })
     @PostMapping("/container/{name}/evaluate")
-    public Mono<ResponseEntity<String>> evaluateDmnContainer(@Parameter(description="The container´s name") @PathVariable String name, @RequestBody DmnRequest dmnRequest) throws ServiceException {
-        String url ="http://localhost:8080/kie-server/services/rest/server/containers/" + name + "/dmn";
+    public Mono<ResponseEntity<String>> evaluateDmnContainer(@Parameter(description = "The container´s name") @PathVariable String name, @RequestBody DmnRequest dmnRequest) throws ServiceException {
+        String url = "http://localhost:8080/kie-server/services/rest/server/containers/" + name + "/dmn";
         System.out.println(dmnRequest.toString());
         return webClientBuilder.build()
                 .post()
