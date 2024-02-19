@@ -31,7 +31,7 @@ public class TestController {
     @Operation(summary = "Test BIM server connection via web with hardcoded credentials")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Connection OK between back and BIM server",
-                    content = { @Content(mediaType = "String",
+                    content = {@Content(mediaType = "String",
                             schema = @Schema(implementation = String.class))}),
     })
     @GetMapping("/test-web")
@@ -77,7 +77,7 @@ public class TestController {
     @Operation(summary = "Test BIM server connection via api using TestRequest")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Connection OK between back and BIM server",
-                    content = { @Content(mediaType = "String",
+                    content = {@Content(mediaType = "String",
                             schema = @Schema(implementation = String.class))}),
     })
     @PostMapping("/test-api")

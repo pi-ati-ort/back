@@ -37,7 +37,7 @@ public class AuthController {
     @Operation(summary = "Register a new user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "User created Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = User.class))}),
     })
     @PostMapping("/register")
@@ -57,7 +57,7 @@ public class AuthController {
     @Operation(summary = "Login a user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User logged in Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = LoginResponse.class))}),
     })
     @PostMapping("/login")
@@ -82,12 +82,12 @@ public class AuthController {
     @Operation(summary = "Logout a user in back and server")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User logged out Ok",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ResponseEntity.class))}),
     })
     @PostMapping("/logout")
     public ResponseEntity<HttpStatus> logout(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                  @RequestHeader(value = "token") String token) throws ServiceException {
+                                             @RequestHeader(value = "token") String token) throws ServiceException {
         bimClient.logout();
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -96,13 +96,13 @@ public class AuthController {
     @Operation(summary = "Get logged user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Get logged user",
-                    content = { @Content(mediaType = "application/json",
+                    content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ServerUser.class))}),
     })
     @GetMapping("/logged")
-    public ResponseEntity<SUser> getLoggedUser( @Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
-                                                    @RequestHeader(value = "token") String token) throws ServiceException {
+    public ResponseEntity<SUser> getLoggedUser(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                               @RequestHeader(value = "token") String token) throws ServiceException {
         SUser user = bimClient.getLoggedUser();
-        return new ResponseEntity<> (user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

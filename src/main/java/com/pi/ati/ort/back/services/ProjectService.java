@@ -28,6 +28,10 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public List<Project> findAllProjectsByUser(String username) {
+        return projectRepository.findAllByUser(username);
+    }
+
     public Project createProject(Project project) {
         return projectRepository.save(project);
     }
@@ -37,4 +41,7 @@ public class ProjectService {
     }
 
 
+    public List<Project> findAllProjectsByUsername(String username) {
+        return projectRepository.findAllByUser(username);
+    }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.pi.ati.ort.back.repositories")
-@OpenAPIDefinition(info=@Info(title="Backend - P.C.D. Proyecto Integrador", version="0.0.1", description="Permisos de Construcción Digitales - Backend del Proyecto Integrador de la carrera Analista Programador en la Universidad ORT Uruguay - Septiembre 2023 / Abril 2024 - Autores: Nicolas Fernandez y Sebastián Paulos", license = @License(name = "Ver Repositorios", url = "https://github.com/pi-ati-ort"), contact = @Contact(name = "Info", email = "nicolas@nicolasf.uy")))
+@OpenAPIDefinition(info = @Info(title = "Backend - P.C.D. Proyecto Integrador", version = "0.0.1", description = "Permisos de Construcción Digitales - Backend del Proyecto Integrador de la carrera Analista Programador en la Universidad ORT Uruguay - Septiembre 2023 / Abril 2024 - Autores: Nicolas Fernandez y Sebastián Paulos", license = @License(name = "Ver Repositorios", url = "https://github.com/pi-ati-ort"), contact = @Contact(name = "Info", email = "nicolas@nicolasf.uy")))
 public class BackApplication {
 
     public static void main(String[] args) {
