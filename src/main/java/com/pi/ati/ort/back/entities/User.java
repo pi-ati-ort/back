@@ -3,6 +3,8 @@ package com.pi.ati.ort.back.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -16,14 +18,25 @@ public class User {
     private String username;
     @NotNull
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @NotNull
+    private Date created_at = new Date();
 
     public User() {
     }
 
-    public User(Long id, String username, String password) {
+    public enum Role {
+        USER,
+        ADMIN
+    }
+
+    public User(Long id, String name, String username, String password, Role role) {
         this.id = id;
+        this.name = name;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public Long getId() {
@@ -58,6 +71,22 @@ public class User {
         this.password = password;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -65,6 +94,8 @@ public class User {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
+                ", created_at=" + created_at +
                 '}';
     }
 }

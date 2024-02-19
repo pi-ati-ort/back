@@ -3,6 +3,8 @@ package com.pi.ati.ort.back.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "models")
 public class Model {
@@ -19,6 +21,8 @@ public class Model {
     private Byte file;
     @NotNull
     private Long size;
+    @NotNull
+    private Date created_at = new Date();
 
     public Model() {
     }
@@ -96,5 +100,13 @@ public class Model {
 
     public void setBimId(Long bimId) {
         this.bimId = bimId;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

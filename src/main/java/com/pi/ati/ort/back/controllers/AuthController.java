@@ -46,6 +46,7 @@ public class AuthController {
         user.setName(registerRequest.getName());
         user.setUsername(registerRequest.getUsername());
         user.setPassword(registerRequest.getPassword());
+        user.setRole(User.Role.valueOf(registerRequest.getRole()));
 
         bimClient.registerUser(user.getUsername(), user.getPassword(), user.getName());
         User createdUser = userService.createUser(user);
