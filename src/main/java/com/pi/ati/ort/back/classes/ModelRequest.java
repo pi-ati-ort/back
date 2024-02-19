@@ -7,16 +7,18 @@ public class ModelRequest {
     private Byte[] file;
     private Long bimId;
     private Long size;
+    private String username;
 
     public ModelRequest() {
     }
 
-    public ModelRequest(String filename, Long projectId, Byte[] file, Long bimId, Long size) {
+    public ModelRequest(String filename, Long projectId, Byte[] file, Long bimId, Long size, String username) {
         this.filename = filename;
         this.projectId = projectId;
         this.file = file;
         this.bimId = bimId;
         this.size = size;
+        this.username = username;
     }
 
     public String getFilename() {
@@ -25,6 +27,14 @@ public class ModelRequest {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getProjectId() {

@@ -10,6 +10,8 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    private String username;
+    @NotNull
     private Long projectId;
     private Long bimId;
     @NotNull
@@ -21,8 +23,9 @@ public class Model {
     public Model() {
     }
 
-    public Model(Long id, String filename, Long projectId, Long bimId, Byte file, Long size) {
+    public Model(Long id, String filename, Long projectId, Long bimId, Byte file, Long size, String username) {
         this.id = id;
+        this.username = username;
         this.projectId = projectId;
         this.bimId = bimId;
         this.filename = filename;
@@ -30,7 +33,8 @@ public class Model {
         this.size = size;
     }
 
-    public Model(String filename, Long projectId, Long bimId, Byte file, Long size) {
+    public Model(String filename, Long projectId, Long bimId, Byte file, Long size, String username) {
+        this.username = username;
         this.filename = filename;
         this.projectId = projectId;
         this.bimId = bimId;
@@ -44,6 +48,14 @@ public class Model {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFilename() {

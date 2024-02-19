@@ -31,4 +31,8 @@ public class ModelService {
         modelRepository.deleteById(id);
     }
 
+    public List<Model> findAllModelsByUsername(String username) {
+        return modelRepository.findAllByUsername(username);
+    }
+
 }

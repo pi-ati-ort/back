@@ -45,8 +45,9 @@ public class ModelController {
         model.setFilename(modelRequest.getFilename());
         model.setSize(modelRequest.getSize());
         model.setBimId(modelRequest.getBimId());
+        model.setUsername(modelRequest.getUsername());
         modelService.createModel(model);
-        //bimClient.uploadModel(modelRequest.getFile(), modelRequest.getPath());
+        //bimClient.uploadModel(modelRequest.getFile(), modelRequest.getProjectId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -61,6 +62,19 @@ public class ModelController {
     public ResponseEntity<Iterable<Model>> getAllModels(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
                                                         @RequestHeader(value = "token") String token) {
         return new ResponseEntity<>(modelService.findAllModels(), HttpStatus.OK);
+    }
+
+    // GET MODELS BY USERNAME -----------------------------------------------------
+    @Operation(summary = "Get all the models by username")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Model.class))}),
+    })
+    @GetMapping("/models/user/{username}/models")
+    public ResponseEntity<Iterable<Model>> getAllModelsByUsername(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
+                                                                  @RequestHeader(value = "token") String token, @Parameter(description = "The User's username") @PathVariable String username) {
+        return new ResponseEntity<>(modelService.findAllModelsByUsername(username), HttpStatus.OK);
     }
 
     // DELETE MODEL BY PROJECT ID -----------------------------------------------------

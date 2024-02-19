@@ -56,7 +56,7 @@ public class ProjectController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Project.class))}),
     })
-    @GetMapping("/projects/user/{username}")
+    @GetMapping("/projects/user/{username}/projects")
     public List<Project> getAllProjectsByUsername(@Parameter(in = ParameterIn.HEADER, description = "Login token", required = true, schema = @Schema(type = "string"))
                                                   @RequestHeader(value = "token") String token, @Parameter(description = "The User's username") @PathVariable String username) {
         return projectService.findAllProjectsByUsername(username);
