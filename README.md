@@ -1,4 +1,4 @@
-<img align="right" width="60%" alt="Entrega Final" src="https://github.com/pi-ati-ort/.github-private/assets/82982815/4f406725-ba4d-412c-a7b3-8928abd982f9" />
+<img align="right" width="60%" alt="Entrega Final" src="https://github.com/pi-ati-ort/back/assets/82982815/723c9c36-59f5-47c5-9b3b-87ba5cabe2f1" />
 
 # Proyecto Integrador
 ## Analista en Tecnologías de la Información
